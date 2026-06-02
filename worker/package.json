@@ -1,0 +1,24 @@
+{
+  "name": "xml-sefaz-worker",
+  "version": "1.0.0",
+  "description": "Worker mTLS para Distribuição DF-e (NF-e/CT-e) via certificado A1",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "express": "^4.21.0",
+    "node-forge": "^1.3.1",
+    "pino": "^9.5.0",
+    "pino-http": "^10.3.0",
+    "undici": "^6.20.0",
+    "xml2js": "^0.6.2",
+    "zod": "^3.23.8"
+  }
+}

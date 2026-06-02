@@ -1,0 +1,1 @@
+ALTER TYPE chatbot_node_kind ADD VALUE IF NOT EXISTS 'menu';

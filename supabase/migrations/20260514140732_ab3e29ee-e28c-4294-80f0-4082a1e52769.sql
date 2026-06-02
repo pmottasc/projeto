@@ -1,0 +1,1 @@
+ALTER TABLE public.wa_messages REPLICA IDENTITY FULL;

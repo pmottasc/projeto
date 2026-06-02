@@ -1,0 +1,1 @@
+DROP POLICY IF EXISTS "deny all xml certs to anon" ON storage.objects;

@@ -1,0 +1,19 @@
+project_id = "hoxmwmwxhmgdrupbmzht"
+
+[functions.bootstrap-superadmin]
+verify_jwt = false
+
+[functions.wa-webhook]
+verify_jwt = false
+
+[functions.wa-meta]
+verify_jwt = false
+
+[functions.wa-bot-engine]
+verify_jwt = false
+
+[functions.wa-agent-loop]
+verify_jwt = false
+
+[functions.wa-agent-test]
+verify_jwt = false

@@ -1,0 +1,59 @@
+# ============================================================
+# SEGURANÇA - Previne exposição de código fonte (CPanel/Apache)
+# ============================================================
+
+# 1. Desabilita listagem de diretórios (múltiplas camadas de proteção)
+Options -Indexes
+IndexIgnore *
+
+# 2. Se mod_rewrite disponível, protege assets/ e sounds/
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  
+  # Bloqueia listagem de diretórios protegidos via rewrite
+  RewriteCond %{REQUEST_URI} ^/assets/?$ [OR]
+  RewriteCond %{REQUEST_URI} ^/sounds/?$
+  RewriteRule ^(.*)$ /index.html [L,R=403]
+  
+  # SPA fallback - redireciona todas as rotas para index.html
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# 3. Headers de segurança HTTP
+<IfModule mod_headers.c>
+  # Previne clickjacking
+  Header always set X-Frame-Options "SAMEORIGIN"
+  # Previne MIME sniffing
+  Header always set X-Content-Type-Options "nosniff"
+  # Política de referrer
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  # Content Security Policy básica
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://*.lovable.app https://*.supabase.co; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://*.supabase.co https://*.lovable.app; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://*.lovable.app https://api.nfe.io https://*.nfe.io https://api.ipify.org; frame-ancestors 'self';"
+  
+  # Cache longo para assets com hash
+  <FilesMatch "\.(js|css|woff2?|ttf|otf|png|jpg|jpeg|gif|svg|webp|avif)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
+
+# 4. Bloqueia arquivos sensíveis
+<FilesMatch "^\.">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# 5. Bloqueia source maps em produção
+<FilesMatch "\.map$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# 6. Bloqueia arquivos de configuração sensíveis
+<FilesMatch "\.(env|gitignore|gitattributes|config\.js|config\.ts)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>

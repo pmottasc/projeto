@@ -1,0 +1,1 @@
+ALTER TABLE public.scheduled_messages ADD COLUMN IF NOT EXISTS attachments jsonb NOT NULL DEFAULT '[]'::jsonb;

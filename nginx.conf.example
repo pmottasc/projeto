@@ -1,0 +1,33 @@
+# Exemplo de configuração Nginx (referência - aplicar no servidor)
+# server {
+#   listen 80;
+#   server_name chamados.tellcontab.com.br;
+#   root /var/www/chamados/dist;
+#   index index.html;
+#
+#   # CRÍTICO: desabilita listagem de diretórios
+#   autoindex off;
+#
+#   # SPA fallback
+#   location / {
+#     try_files $uri $uri/ /index.html;
+#   }
+#
+#   # Bloqueia source maps
+#   location ~ \.map$ {
+#     deny all;
+#     return 404;
+#   }
+#
+#   # Bloqueia listagem de /assets
+#   location /assets/ {
+#     autoindex off;
+#     try_files $uri =404;
+#   }
+#
+#   # Cache de assets
+#   location ~* \.(js|css|woff2?|ttf|otf|png|jpg|jpeg|gif|svg|webp|avif)$ {
+#     expires 1y;
+#     add_header Cache-Control "public, immutable";
+#   }
+# }

@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand palette derived from Hub logo: magenta → violet → blue */
+    --brand-magenta: 328 88% 56%;
+    --brand-violet: 268 78% 58%;
+    --brand-blue: 215 95% 56%;
+
+    --background: 270 25% 98%;
+    --foreground: 260 30% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 260 30% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 260 30% 15%;
+
+    --primary: 268 78% 58%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 270 20% 96%;
+    --secondary-foreground: 260 30% 18%;
+
+    --muted: 270 20% 96%;
+    --muted-foreground: 260 10% 48%;
+
+    --accent: 328 88% 96%;
+    --accent-foreground: 328 80% 45%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 160 84% 39%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --border: 270 20% 91%;
+    --input: 270 20% 91%;
+    --ring: 268 78% 58%;
+
+    --radius: 0.625rem;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 260 30% 22%;
+    --sidebar-primary: 268 78% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 268 70% 96%;
+    --sidebar-accent-foreground: 268 78% 40%;
+    --sidebar-border: 270 20% 93%;
+    --sidebar-ring: 268 78% 58%;
+    --sidebar-muted: 260 10% 50%;
+
+    --icon-color: 260 15% 42%;
+    --icon-active: 268 78% 58%;
+  }
+
+  .dark {
+    --brand-magenta: 328 92% 62%;
+    --brand-violet: 268 82% 66%;
+    --brand-blue: 215 95% 62%;
+
+    --background: 260 28% 9%;
+    --foreground: 270 15% 92%;
+
+    --card: 262 24% 12%;
+    --card-foreground: 270 15% 92%;
+
+    --popover: 262 24% 12%;
+    --popover-foreground: 270 15% 92%;
+
+    --primary: 268 82% 66%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 262 20% 17%;
+    --secondary-foreground: 270 15% 88%;
+
+    --muted: 262 20% 17%;
+    --muted-foreground: 270 12% 60%;
+
+    --accent: 328 60% 22%;
+    --accent-foreground: 328 90% 78%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 160 70% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 80% 55%;
+    --warning-foreground: 0 0% 100%;
+
+    --border: 262 20% 20%;
+    --input: 262 20% 20%;
+    --ring: 268 82% 66%;
+
+    --sidebar-background: 260 28% 10%;
+    --sidebar-foreground: 270 15% 90%;
+    --sidebar-primary: 268 82% 66%;
+    --sidebar-primary-foreground: 260 28% 10%;
+    --sidebar-accent: 268 30% 18%;
+    --sidebar-accent-foreground: 268 90% 82%;
+    --sidebar-border: 262 20% 18%;
+    --sidebar-ring: 268 82% 66%;
+    --sidebar-muted: 270 15% 62%;
+
+    --icon-color: 270 15% 72%;
+    --icon-active: 268 82% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer utilities {
+  .sidebar-gradient {
+    background: linear-gradient(180deg, hsl(var(--sidebar-background)) 0%, hsl(var(--sidebar-background) / 0.95) 100%);
+  }
+  .brand-gradient {
+    background: linear-gradient(135deg, hsl(var(--brand-magenta)) 0%, hsl(var(--brand-violet)) 50%, hsl(var(--brand-blue)) 100%);
+  }
+  .brand-gradient-text {
+    background: linear-gradient(135deg, hsl(var(--brand-magenta)) 0%, hsl(var(--brand-violet)) 50%, hsl(var(--brand-blue)) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+@layer components {
+  .card-premium {
+    @apply bg-card rounded-xl border shadow-sm;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .card-premium:hover {
+    box-shadow: 0 4px 20px -4px hsl(220 30% 10% / 0.06);
+  }
+
+  .stat-card {
+    @apply bg-card rounded-xl border p-6 relative overflow-hidden;
+    transition: box-shadow 0.25s ease, transform 0.2s ease;
+  }
+  .stat-card:hover {
+    box-shadow: 0 8px 30px -8px hsl(220 30% 10% / 0.08);
+    transform: translateY(-2px);
+  }
+
+  .badge-status {
+    @apply inline-flex items-center rounded-md px-2.5 py-1 text-[10.5px] font-semibold tracking-wider uppercase;
+  }
+
+  .badge-open {
+    background-color: hsl(215 95% 56% / 0.1);
+    color: hsl(215 95% 48%);
+  }
+  .badge-progress {
+    background-color: hsl(38 92% 50% / 0.1);
+    color: hsl(38 80% 42%);
+  }
+  .badge-done {
+    background-color: hsl(160 84% 39% / 0.1);
+    color: hsl(160 84% 33%);
+  }
+  .badge-urgent {
+    background-color: hsl(0 84% 60% / 0.08);
+    color: hsl(0 84% 48%);
+  }
+
+  .badge-low {
+    background-color: hsl(160 84% 39% / 0.1);
+    color: hsl(160 84% 33%);
+  }
+  .badge-medium {
+    background-color: hsl(38 92% 50% / 0.1);
+    color: hsl(38 80% 42%);
+  }
+  .badge-high {
+    background-color: hsl(0 84% 60% / 0.08);
+    color: hsl(0 84% 48%);
+  }
+  .badge-critical {
+    background-color: hsl(340 90% 50% / 0.12);
+    color: hsl(340 90% 42%);
+    border: 1px solid hsl(340 90% 50% / 0.25);
+  }
+  .badge-waiting {
+    background-color: hsl(280 60% 50% / 0.1);
+    color: hsl(280 60% 42%);
+  }
+  .badge-resolved {
+    background-color: hsl(160 84% 39% / 0.15);
+    color: hsl(160 84% 28%);
+  }
+
+  .section-heading {
+    @apply text-[11px] font-semibold uppercase tracking-widest;
+    color: hsl(220 10% 55%);
+  }
+}
